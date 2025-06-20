@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>اختر سيارتك</title>
+  <style>
+    body {
+      background-image: url("background.jpg"); /* ضع صورة خلفية هنا */
+      background-size: cover;
+      background-position: center;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .container {
+      background-color: rgba(0,0,0,0.6);
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+    }
+    input {
+      padding: 10px;
+      font-size: 18px;
+      width: 80%;
+      border-radius: 10px;
+      border: none;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-top: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: #28a745;
+      color: white;
+    }
+    img {
+      margin-top: 20px;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>أدخل اسمك لتعرف سيارتك</h1>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك هنا">
+    <br>
+    <button onclick="showRandomCar()">اعرض السيارة</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const carImages = [
+      "https://i.imgur.com/RkKq3VU.jpg",
+      "https://i.imgur.com/iq6rVWa.jpg",
+      "https://i.imgur.com/yoAvzvX.jpg",
+      "https://i.imgur.com/iwD5wqX.jpg",
+      "https://i.imgur.com/bZJYVWW.jpg"
+    ];
+
+    function showRandomCar() {
+      const name = document.getElementById('nameInput').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (!name) {
+        alert("من فضلك أدخل اسمك");
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * carImages.length);
+      const car = carImages[randomIndex];
+
+      resultDiv.innerHTML = `
+        <h2>يا ${name}، سيارتك هي:</h2>
+        <img src="${car}" alt="سيارة">
+      `;
+    }
+
+    // تشغيل الزر عند الضغط على Enter
+    document.getElementById("nameInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        showRandomCar();
+      }
+    });
+  </script>
+
+</body>
+</html>
